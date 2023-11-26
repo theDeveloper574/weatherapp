@@ -11,11 +11,11 @@ String weatherClassModelToJson(WeatherClassModel data) =>
     json.encode(data.toJson());
 
 class WeatherClassModel {
-  String cod;
-  int message;
-  int cnt;
-  List<ListElement> list;
-  City city;
+  String? cod;
+  int? message;
+  int? cnt;
+  List<ListElement>? list;
+  City? city;
 
   WeatherClassModel({
     required this.cod,
@@ -39,20 +39,20 @@ class WeatherClassModel {
         "cod": cod,
         "message": message,
         "cnt": cnt,
-        "list": List<dynamic>.from(list.map((x) => x.toJson())),
-        "city": city.toJson(),
+        "list": List<dynamic>.from(list!.map((x) => x.toJson())),
+        "city": city!.toJson(),
       };
 }
 
 class City {
-  int id;
-  String name;
+  int? id;
+  String? name;
   Coord coord;
-  String country;
-  int population;
-  int timezone;
-  int sunrise;
-  int sunset;
+  String? country;
+  int? population;
+  int? timezone;
+  int? sunrise;
+  int? sunset;
 
   City({
     required this.id,
@@ -109,15 +109,15 @@ class Coord {
 }
 
 class ListElement {
-  int dt;
-  MainClass main;
-  List<Weather> weather;
-  Clouds clouds;
-  Wind wind;
-  int visibility;
-  int pop;
-  Sys sys;
-  DateTime dtTxt;
+  int? dt;
+  MainClass? main;
+  List<Weather>? weather;
+  Clouds? clouds;
+  Wind? wind;
+  int? visibility;
+  dynamic pop;
+  Sys? sys;
+  DateTime? dtTxt;
 
   ListElement({
     required this.dt,
@@ -146,19 +146,19 @@ class ListElement {
 
   Map<String, dynamic> toJson() => {
         "dt": dt,
-        "main": main.toJson(),
-        "weather": List<dynamic>.from(weather.map((x) => x.toJson())),
-        "clouds": clouds.toJson(),
-        "wind": wind.toJson(),
+        "main": main!.toJson(),
+        "weather": List<dynamic>.from(weather!.map((x) => x.toJson()) ?? []),
+        "clouds": clouds!.toJson(),
+        "wind": wind!.toJson(),
         "visibility": visibility,
         "pop": pop,
-        "sys": sys.toJson(),
-        "dt_txt": dtTxt.toIso8601String(),
+        "sys": sys!.toJson(),
+        "dt_txt": dtTxt!.toIso8601String(),
       };
 }
 
 class Clouds {
-  int all;
+  int? all;
 
   Clouds({
     required this.all,
@@ -174,15 +174,15 @@ class Clouds {
 }
 
 class MainClass {
-  double temp;
-  double feelsLike;
-  double tempMin;
-  double tempMax;
-  int pressure;
-  int seaLevel;
-  int grndLevel;
-  int humidity;
-  double tempKf;
+  double? temp;
+  double? feelsLike;
+  double? tempMin;
+  double? tempMax;
+  int? pressure;
+  int? seaLevel;
+  int? grndLevel;
+  int? humidity;
+  double? tempKf;
 
   MainClass({
     required this.temp,
@@ -291,9 +291,9 @@ final mainEnumValues =
     EnumValues({"Clear": MainEnum.CLEAR, "Clouds": MainEnum.CLOUDS});
 
 class Wind {
-  double speed;
-  int deg;
-  double gust;
+  double? speed;
+  int? deg;
+  double? gust;
 
   Wind({
     required this.speed,

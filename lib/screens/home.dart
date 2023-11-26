@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
               builder: (BuildContext context, value, Widget? child) {
                 return value.weatherClassModel == null || value.isLoading
                     ? const SizedBox()
-                    : Text(": ${value.weatherClassModel!.city.name}");
+                    : Text(": ${value.weatherClassModel!.city!.name}");
               },
             )
           ],
@@ -108,14 +108,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     return value.weatherClassModel == null || value.isLoading
                         ? AppUtils.loading()
                         : ListView.builder(
-                            itemCount: value.weatherClassModel!.list.length,
+                            itemCount: value.weatherClassModel!.list!.length,
                             itemBuilder: (BuildContext context, int index) {
-                              var cloud = value.weatherClassModel!.list[index]
-                                  .weather.first.description
+                              var cloud = value.weatherClassModel!.list![index]
+                                  .weather!.first.description
                                   .toString();
                               var finalCl = cloud.substring(12);
-                              var data = value.weatherClassModel!.list[index];
-                              var temp = data.main.temp.toInt();
+                              var data = value.weatherClassModel!.list![index];
+                              var temp = data.main!.temp!.toInt();
                               double temperatureInCelsius = temp - 273.15;
                               double temperatureInFahrenheit =
                                   temp * 9 / 5 - 459.67;
@@ -136,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   subtitle: Text(finalCl.replaceAll("_", ' ')),
                                   trailing: Icon(
-                                    getWeatherIcon(data.weather.first.icon),
+                                    getWeatherIcon(data.weather!.first.icon),
                                     size: 30,
                                     color: Colors.deepPurple,
                                   ),
